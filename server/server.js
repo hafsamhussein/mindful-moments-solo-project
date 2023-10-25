@@ -1,6 +1,8 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 require('dotenv').config();
+process.env.SERVER_SESSION_SECRET //encrypt and secure user session !!
+
 
 const app = express();
 
