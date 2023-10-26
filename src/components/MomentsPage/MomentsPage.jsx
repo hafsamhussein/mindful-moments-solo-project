@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './MomentsPage.css';
 import { useSelector } from 'react-redux';
-
+import { useHistory } from 'react-router-dom'; // added to get history for new component
 function MomentsPage() {
     const user = useSelector((store) => store.user);
     const [momentList, setMomentList] = useState([]);
@@ -12,9 +12,14 @@ function MomentsPage() {
         photo_url: ''
     });
 
+    const history = useHistory(); // Initializing history
+
     const addMoment = () => {
         setMomentList([...momentList, { ...newMoment, id: Date.now() }]);
         setNewMoment({name: '', notes: '', date: '', photo_url: '' });
+        
+        // this will use history to navigate to the moments list page
+        history.push('/moments');
     };
 
     const deleteMoment = (id) => {
