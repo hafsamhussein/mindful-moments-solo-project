@@ -19,6 +19,8 @@ import InfoPage from '../InfoPage/InfoPage';
 import LandingPage from '../LandingPage/LandingPage';
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
+import MindfulInstructions from '../MindfulInstructions/MindfulInstructions';
+import MomentsPage from '../MomentsPage/MomentsPage';
 
 import './App.css';
 
@@ -60,13 +62,13 @@ function App() {
             <UserPage />
           </ProtectedRoute>
 
-          <ProtectedRoute
+          {/* <ProtectedRoute
             // logged in shows InfoPage else shows LoginPage
             exact
             path="/info"
           >
             <InfoPage />
-          </ProtectedRoute>
+          </ProtectedRoute> */}
 
           <Route
             exact
@@ -109,7 +111,16 @@ function App() {
               <LandingPage />
             }
           </Route>
-
+          {/* Instructions Page */}
+          <ProtectedRoute exact path ="/MindfulInstructions">
+          <MindfulInstructions /> 
+          </ProtectedRoute>
+          
+          {/* Moments Page */}
+          <ProtectedRoute exact path ="/Moments">
+          <MomentsPage /> 
+          </ProtectedRoute>
+          
           {/* If none of the other routes matched, we will show a 404. */}
           <Route>
             <h1>404</h1>

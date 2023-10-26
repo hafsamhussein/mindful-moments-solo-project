@@ -1,42 +1,47 @@
 .nav {
-  /* flex box layout */
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-
-  margin: 0 0 30px;
-  background-color: #00acb0;
-  overflow: hidden;
+    display: flex;
+    flex-direction: column; /* To stack title and links vertically */
+    align-items: center;
+    justify-content: center;
+    padding: 15px 0;
+    margin-bottom: 30px;
+    background: linear-gradient(to right, #d38acc, #00acb0);
+    overflow: hidden;
 }
 
 .nav a {
-  text-decoration: none;
+    text-decoration: none;
 }
 
 .nav-title {
-  font-size: 24px;
-  font-weight: 700;
-  color: #f2f2f2;
-  padding-left: 10px;
-  margin: 0;
+    font-size: 24px;
+    font-weight: 700;
+    color: #f2f2f2;
+    margin: 10px 0; /* Adjust margin as needed */
 }
 
 .navLink {
-  display: inline-block;
-  color: #f2f2f2;
-  background-color: #00acb0;
-  text-align: center;
-  padding: 24px 10px;
-  text-decoration: none;
-  font-size: 15px;
-
-  /* these last two make the logout button in
-  the nav bar look like another link */
-  border: none;
-  cursor: pointer;
-  outline: 0;
+    display: inline-block;
+    color: #f2f2f2;
+    background-color: #00acb0;
+    text-align: center;
+    padding: 12px 20px;
+    margin: 5px 10px; /* To provide spacing between links */
+    text-decoration: none;
+    font-size: 15px;
+    border: none;
+    cursor: pointer;
+    outline: 0;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s, transform 0.3s;
 }
 
 .navLink:hover {
-  background-color: #008183;
+    background-color: #008183;
+    transform: scale(1.05);
+}
+
+/* Assuming one of the .navLink elements is for login */
+.navLink.login {
+    margin-top: 20px; /* Spacing for login link to appear below */
 }
