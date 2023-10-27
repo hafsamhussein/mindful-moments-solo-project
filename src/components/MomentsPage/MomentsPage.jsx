@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './MomentsPage.css';
 import { useSelector } from 'react-redux';
-import { useHistory } from 'react-router-dom'; // added to get history for new component
+
 function MomentsPage() {
     const user = useSelector((store) => store.user);
     const [momentList, setMomentList] = useState([]);
@@ -12,14 +12,23 @@ function MomentsPage() {
         photo_url: ''
     });
 
-    const history = useHistory(); // Initializing history
+    const [isEditing, setIsEditing] = useState(null);
+    const [editedMoment, setEditedMoment] = useState({});
 
     const addMoment = () => {
         setMomentList([...momentList, { ...newMoment, id: Date.now() }]);
         setNewMoment({name: '', notes: '', date: '', photo_url: '' });
-        
-        // this will use history to navigate to the moments list page
-        history.push('/moments');
+    };
+
+    const startEditing = (moment) => {
+        setIsEditing(moment.id);
+        setEditedMoment(moment);
+    };
+
+    const saveEdits = () => {
+        setMomentList(momentList.map(moment => moment.id === isEditing ? editedMoment : moment));
+        setIsEditing(null);
+        setEditedMoment({});
     };
 
     const deleteMoment = (id) => {
@@ -29,14 +38,12 @@ function MomentsPage() {
 
     return (
         <div className="container">
-            <h2>My Moments</h2>
-            
-            {/* Input Form */}
+        <h2>My Moments</h2>
             <div>
-                <input 
-                    value={newMoment.name}
-                    onChange={(e) => setNewMoment({ ...newMoment, name: e.target.value })}
-                    placeholder="Name"
+             <input 
+                value={newMoment.name}
+                onChange={(e) => setNewMoment({ ...newMoment, name: e.target.value })}
+                placeholder="Name"
                 />
                 <textarea 
                     value={newMoment.notes}
@@ -57,28 +64,43 @@ function MomentsPage() {
                 <button onClick={addMoment}>Add Moment</button>
             </div>
 
-            {/* Displaying Moments */}
             {
                 momentList.length === 0 && (
                     <div>No moments to display.</div>
                 )
             }
+            
             {
-                momentList.map(moment => {
-                    return (
-                        <div className="responsive" key={moment.id}>
-                            <div className="gallery">
-                                <div className="desc">{moment.name}</div>
-                                <div className="desc">{moment.notes}</div>
-                                <div className="desc">{moment.date}</div>
-                                <img src={moment.photo_url} alt={`Moment from ${moment.date}`} />
-                                <br />
-                                <div style={{ textAlign: 'center', padding: '5px' }}>
-                                    <button style={{ cursor: 'pointer' }} onClick={() => deleteMoment(moment.id)}>Delete</button>
+        momentList.map(moment => {
+            if (moment.id === isEditing) {
+                return (
+                    <div className="responsive" key={moment.id}>
+                        <div className="gallery">
+                            <input value={editedMoment.name} onChange={e => setEditedMoment({...editedMoment, name: e.target.value})} />
+                            <textarea value={editedMoment.notes} onChange={e => setEditedMoment({...editedMoment, notes: e.target.value})} />
+                            <input type="date" value={editedMoment.date} onChange={e => setEditedMoment({...editedMoment, date: e.target.value})} />
+                            <input value={editedMoment.photo_url} onChange={e => setEditedMoment({...editedMoment, photo_url: e.target.value})} />
+                            <button onClick={saveEdits}>Save</button>
+                        </div>
+                    </div>
+                );
+                    } else {
+                        return (
+                            <div className="responsive" key={moment.id}>
+                                <div className="gallery">
+                                    <div className="desc">{moment.name}</div>
+                                    <div className="desc">{moment.notes}</div>
+                                    <div className="desc">{moment.date}</div>
+                                    <img src={moment.photo_url} alt={`Moment from ${moment.date}`} />
+                                    <br />
+                                    <div style={{ textAlign: 'center', padding: '5px' }}>
+                                        <button onClick={() => startEditing(moment)}>Edit</button>
+                                        <button onClick={() => deleteMoment(moment.id)}>Delete</button>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    )
+                        );
+                    }
                 })
             }
             <div className="clearfix"></div>
