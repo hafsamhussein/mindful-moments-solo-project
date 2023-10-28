@@ -21,6 +21,7 @@ import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
 import MindfulInstructions from '../MindfulInstructions/MindfulInstructions';
 import MomentsPage from '../MomentsPage/MomentsPage';
+import MomentsList from '../MomentsList/MomentsList';
 
 import './App.css';
 
@@ -119,6 +120,10 @@ function App() {
           {/* Moments Page */}
           <ProtectedRoute exact path ="/Moments">
           <MomentsPage /> 
+          </ProtectedRoute>
+            {/* Moments List */}
+            <ProtectedRoute exact path ="/MomentsList">
+          <MomentsList /> 
           </ProtectedRoute>
           
           {/* If none of the other routes matched, we will show a 404. */}
