@@ -2,6 +2,9 @@ import React, { useState } from 'react';
 import './MomentsPage.css';
 import { useSelector } from 'react-redux';
 import MomentsList from '../MomentsList/MomentsList';
+import { useHistory } from 'react-router-dom'; 
+import { Link } from '@mui/material';
+
 
 function MomentsPage({ momentsList, setMomentsList }) {  // this accepts the momentslist prop
     const user = useSelector((store) => store.user);
@@ -28,6 +31,7 @@ function MomentsPage({ momentsList, setMomentsList }) {  // this accepts the mom
     return (
         <div className="container">
             <h2>My Moments</h2>
+
             
             <div>
                 <input 
@@ -54,7 +58,7 @@ function MomentsPage({ momentsList, setMomentsList }) {  // this accepts the mom
                 <button onClick={addMoment}>Add Moment</button>
             </div>
 
-            <MomentsList moments={momentsList} onDelete={deleteMoment} />
+            <Link to="/MomentsList">View Moments List</Link>
             
             <div className="clearfix"></div>
         </div>

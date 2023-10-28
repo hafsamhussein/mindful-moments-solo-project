@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   HashRouter as Router,
   Redirect,
@@ -27,8 +27,9 @@ import './App.css';
 
 function App() {
   const dispatch = useDispatch();
-
   const user = useSelector(store => store.user);
+  const [momentsList, setMomentsList] = useState([]); 
+
 
   useEffect(() => {
     dispatch({ type: 'FETCH_USER' });
