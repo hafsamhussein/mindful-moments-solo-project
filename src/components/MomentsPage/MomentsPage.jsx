@@ -1,12 +1,10 @@
 import React, { useState } from 'react';
 import './MomentsPage.css';
 import { useSelector } from 'react-redux';
-import { useHistory } from 'react-router-dom';
 import MomentsList from '../MomentsList/MomentsList';
 
-function MomentsPage() {
+function MomentsPage({ momentsList, setMomentsList }) {  // this accepts the momentslist prop
     const user = useSelector((store) => store.user);
-    const [momentsList, setMomentsList] = useState([]);
     const [newMoment, setNewMoment] = useState({
         name: '',
         notes: '',
