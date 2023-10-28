@@ -117,14 +117,16 @@ function App() {
           <MindfulInstructions /> 
           </ProtectedRoute>
           
-          {/* Moments Page */}
-          <ProtectedRoute exact path ="/Moments">
-          <MomentsPage /> 
-          </ProtectedRoute>
-            {/* Moments List */}
-            <ProtectedRoute exact path ="/MomentsList">
-          <MomentsList /> 
-          </ProtectedRoute>
+        {/* Moments Page */}
+        <ProtectedRoute exact path="/Moments">
+        <MomentsPage momentsList={momentsList} setMomentsList={setMomentsList} />
+        </ProtectedRoute>
+
+        {/* Moments List */}
+        <ProtectedRoute exact path="/MomentsList">
+        <MomentsList moments={momentsList} />
+        </ProtectedRoute>
+
           
           {/* If none of the other routes matched, we will show a 404. */}
           <Route>

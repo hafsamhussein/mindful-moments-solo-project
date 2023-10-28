@@ -31,7 +31,6 @@ function MomentsPage() {
         <div className="container">
             <h2>My Moments</h2>
             
-            {/* Input Form */}
             <div>
                 <input 
                     value={newMoment.name}
@@ -57,7 +56,6 @@ function MomentsPage() {
                 <button onClick={addMoment}>Add Moment</button>
             </div>
 
-            {/* Displaying Moments */}
             <MomentsList moments={momentsList} onDelete={deleteMoment} />
             
             <div className="clearfix"></div>
