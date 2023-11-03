@@ -21,7 +21,9 @@ import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
 import MindfulInstructions from '../MindfulInstructions/MindfulInstructions';
 import MomentsPage from '../MomentsPage/MomentsPage';
-import MomentsList from '../MomentsList/MomentsList';
+import AddNewMoment from '../AddNewMoment/AddNewMoment';
+import EditMomentComponent from '../EditMomentComponent/EditMomentComponent';
+
 
 import './App.css';
 
@@ -118,15 +120,23 @@ function App() {
           <MindfulInstructions /> 
           </ProtectedRoute>
           
-        {/* Moments Page */}
+        {/*Moments Page */}
         <ProtectedRoute exact path="/Moments">
         <MomentsPage momentsList={momentsList} setMomentsList={setMomentsList} />
-        </ProtectedRoute>
+        </ProtectedRoute> 
 
         {/* Moments List */}
-        <ProtectedRoute exact path="/MomentsList">
+        {/* <ProtectedRoute exact path="/MomentsList">
         <MomentsList moments={momentsList} />
-        </ProtectedRoute>
+        </ProtectedRoute> */} */
+
+  {/* <Route path="/MomentsPage" component={MomentsPage} /> */}
+  <Route path="/AddNewMoment" component={AddNewMoment} />
+  {/* <Route path="/EditMomentComponent" component={EditMomentComponent} /> */}
+
+  <Route path="/EditMoment/:id" component={EditMomentComponent} />
+
+
 
           
           {/* If none of the other routes matched, we will show a 404. */}

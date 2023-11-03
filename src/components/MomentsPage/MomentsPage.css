@@ -67,3 +67,37 @@ button:hover {
 .clearfix {
     clear: both;
 }
+
+/* Existing .gallery img styles */
+.gallery img {
+    max-width: 300px;  /* Limit the width */
+    max-height: 200px;  /* Limit the height */
+    height: auto;
+    border-radius: 10px;
+    margin-top: 10px;
+    border: 1px solid #ddd;  /* Add a subtle border */
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);  /* Add a subtle shadow */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;  /* Smooth transition */
+}
+
+/* Hover effect for images - slight zoom and shadow enhancement */
+.gallery img:hover {
+    transform: scale(1.05);  /* Slight zoom on hover */
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);  /* Enhanced shadow on hover */
+}
+
+/* Optional: Ensure all images maintain the same aspect ratio */
+.aspect-ratio-4-3 {
+    width: 100%;
+    padding-top: 75%;  /* 4:3 aspect ratio */
+    position: relative;
+}
+
+.aspect-ratio-4-3 img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}

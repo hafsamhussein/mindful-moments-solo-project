@@ -32,7 +32,7 @@ function Nav() {
               Info Page
             </Link>} */} 
 
-             <Link to="/MomentsList">My Moments List</Link>
+             {/* <Link to="/MomentsList">My Moments List</Link> */}
 
           { <Link className="navLink" to="/about">
           About

@@ -1,69 +1,85 @@
-import React, { useState } from 'react';
-import './MomentsPage.css';
-import { useSelector } from 'react-redux';
-import MomentsList from '../MomentsList/MomentsList';
-import { useHistory } from 'react-router-dom'; 
-import { Link } from '@mui/material';
+import React, { useState, useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { useHistory } from "react-router-dom";
 
+function MomentsPage() {
+  const dispatch = useDispatch();
+  const history = useHistory();
+  const [momentsList, setMomentsList] = useState([]);
 
-function MomentsPage({ momentsList, setMomentsList }) {  // this accepts the momentslist prop
-    const user = useSelector((store) => store.user);
-    const [newMoment, setNewMoment] = useState({
-        name: '',
-        notes: '',
-        date: '',
-        photo_url: ''
+  useEffect(() => {
+    fetchMoments();
+  }, []);
+
+  const fetchMoments = async () => {
+    try {
+      const response = await fetch("/api/moments");
+      if (!response.ok) {
+        throw new Error("Network response was not OK");
+      }
+      const results = await response.json();
+      setMomentsList(results);
+    } catch (error) {
+      console.error(error);
+      alert("Something went wrong fetching moments.");
+    }
+  };
+
+  const deleteMoment = async (id) => {
+    try {
+      const response = await fetch(`/api/moments/${id}`, { method: "DELETE" });
+      if (!response.ok) {
+        throw new Error("Network response was not OK");
+      }
+      fetchMoments();
+    } catch (error) {
+      console.error(error);
+      alert("Something went wrong deleting the moment.");
+    }
+  };
+
+  const editMoment = (id) => {
+    const momentToEdit = momentsList.find((moment) => moment.id === id);
+    if (!momentToEdit) {
+      console.error(`No moment found with id: ${id}`);
+      return;
+    }
+
+    dispatch({
+      type: "SET_MOMENT",
+      payload: momentToEdit,
     });
 
-    const history = useHistory();
+    history.push(`/EditMoment/${id}`);
+  };
 
-    const addMoment = () => {
-        setMomentsList([...momentsList, { ...newMoment, id: Date.now() }]);
-        setNewMoment({ name: '', notes: '', date: '', photo_url: '' });
-        history.push('/moments');
-    };
+  const addNewMoment = () => {
+    history.push("/AddNewMoment");
+  };
 
-    const deleteMoment = (id) => {
-        const updatedMoments = momentsList.filter(moment => moment.id !== id);
-        setMomentsList(updatedMoments);
-    };
+  const formatDate = (isoString) => {
+    return isoString.split('T')[0];
+  };
 
-    return (
-        <div className="container">
-            <h2>My Moments</h2>
-
-            
-            <div>
-                <input 
-                    value={newMoment.name}
-                    onChange={(e) => setNewMoment({ ...newMoment, name: e.target.value })}
-                    placeholder="Name"
-                />
-                <textarea 
-                    value={newMoment.notes}
-                    onChange={(e) => setNewMoment({ ...newMoment, notes: e.target.value })}
-                    placeholder="Notes"
-                />
-                <input 
-                    type="date"
-                    value={newMoment.date}
-                    onChange={(e) => setNewMoment({ ...newMoment, date: e.target.value })}
-                    placeholder="Date"
-                />
-                <input 
-                    value={newMoment.photo_url}
-                    onChange={(e) => setNewMoment({ ...newMoment, photo_url: e.target.value })}
-                    placeholder="Photo URL"
-                />
-                <button onClick={addMoment}>Add Moment</button>
-            </div>
-
-            <Link to="/MomentsList">View Moments List</Link>
-            
-            <div className="clearfix"></div>
+  return (
+    <div className="container">
+      <h2>Your Moments</h2>
+      {momentsList.map((moment) => (
+        <div key={moment.id} className="moment-card">
+          <h3>{moment.name}</h3>
+          <p>{moment.notes}</p>
+          {/* Use the formatDate function to display the date */}
+          <p>Date: {formatDate(moment.date)}</p>
+          <img src={moment.photo_url} alt={moment.name} />
+          <button onClick={() => editMoment(moment.id)}>Edit</button>
+          <button onClick={() => deleteMoment(moment.id)}>Delete</button>
         </div>
-    );
+      ))}
+      <button onClick={addNewMoment}>Add New Moment</button>
+    </div>
+  );
 }
 
 export default MomentsPage;
+
 

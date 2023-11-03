@@ -18,7 +18,7 @@ CREATE TABLE moments (
     photo_url VARCHAR(512)
 );
 
-INSERT INTO "moments" ( "user_id", "name", "date", "notes", "photo_url")
+INSERT INTO "moments" ( "user_id", "name", "notes", "date", "photo_url")
 VALUES 
 (1, 'Special Moment', '2023-10-13', 'Peaceful walk at Midtown Greenway', 'public/images/IMG_0566.jpeg');
 
