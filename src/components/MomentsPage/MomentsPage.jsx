@@ -68,7 +68,6 @@ function MomentsPage() {
         <div key={moment.id} className="moment-card">
           <h3>{moment.name}</h3>
           <p>{moment.notes}</p>
-          {/* Use the formatDate function to display the date */}
           <p>Date: {formatDate(moment.date)}</p>
           <img src={moment.photo_url} alt={moment.name} />
           <button onClick={() => editMoment(moment.id)}>Edit</button>
@@ -81,5 +80,3 @@ function MomentsPage() {
 }
 
 export default MomentsPage;
-
-

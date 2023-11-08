@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useParams, useHistory } from 'react-router-dom';
+import MomentsPage from '../MomentsPage/MomentsPage';
 
 const EditMomentComponent = () => {
   const { id } = useParams();
@@ -49,6 +50,10 @@ const EditMomentComponent = () => {
     });
     history.push('/moments');
   };
+  const handleCancel = () => {
+    // This will navigate back to the previous page, which should be the moments page.
+    history.goBack();
+  };
 
   return (
     <div>
@@ -92,9 +97,12 @@ const EditMomentComponent = () => {
           />
         </label>
         <button type="submit">Save Changes</button>
+        <button type="button" onClick={handleCancel}>Cancel</button>
+
       </form>
     </div>
   );
 };
 
 export default EditMomentComponent;
+EditMomentComponent.jsx
