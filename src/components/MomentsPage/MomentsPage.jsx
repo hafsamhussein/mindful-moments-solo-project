@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
+import './MomentsPage.css'; 
 
 function MomentsPage() {
   const dispatch = useDispatch();
   const history = useHistory();
   const [momentsList, setMomentsList] = useState([]);
+  
 
   useEffect(() => {
     fetchMoments();

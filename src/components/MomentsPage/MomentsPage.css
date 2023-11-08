@@ -1,103 +1,69 @@
-body {
-    font-family: 'Roboto', sans-serif;
-}
-
 .container {
-    max-width: 800px;
-    margin: 0 auto;
     padding: 20px;
-    background-color: #f5f5f5;
-    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .moment-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: flex-start;
+  }
+  
+  .moment-card {
+    max-width: calc(33.33% - 20px); 
+    flex-basis: calc(33.33% - 20px); 
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-h2 {
-    color: #333;
     margin-bottom: 20px;
-}
-
-input, textarea, button {
-    width: 100%;
-    padding: 10px;
-    margin: 10px 0;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 16px;
-    transition: all 0.3s ease;
-}
-
-input:focus, textarea:focus {
-    border-color: #888;
-    outline: none;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-button {
-    background-color: #6699cc;
-    color: white;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-button:hover {
-    background-color: #5577aa;
-}
-
-.responsive {
-    margin: 15px 0;
-    padding: 10px;
+    transition: transform 0.2s;
+    background-color: #f0f0f0;
     border-radius: 10px;
-    background-color: white;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-.gallery img {
+    overflow: hidden;
+  }
+  
+  .moment-card:hover {
+    transform: scale(1.03);
+  }
+  
+  .moment-card img {
     max-width: 100%;
     height: auto;
-    border-radius: 10px;
-    margin-top: 10px;
-}
-
-.desc {
-    color: #555;
+    display: block;
+    border-radius: 10px 10px 0 0;
+  }
+  
+  .moment-card h3 {
     margin: 10px 0;
+    font-size: 1.5rem;
     text-align: center;
-}
-
-.clearfix {
-    clear: both;
-}
-
-/* Existing .gallery img styles */
-.gallery img {
-    max-width: 300px;  /* Limit the width */
-    max-height: 200px;  /* Limit the height */
-    height: auto;
-    border-radius: 10px;
-    margin-top: 10px;
-    border: 1px solid #ddd;  /* Add a subtle border */
-    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);  /* Add a subtle shadow */
-    transition: transform 0.3s ease, box-shadow 0.3s ease;  /* Smooth transition */
-}
-
-/* Hover effect for images - slight zoom and shadow enhancement */
-.gallery img:hover {
-    transform: scale(1.05);  /* Slight zoom on hover */
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);  /* Enhanced shadow on hover */
-}
-
-/* Optional: Ensure all images maintain the same aspect ratio */
-.aspect-ratio-4-3 {
-    width: 100%;
-    padding-top: 75%;  /* 4:3 aspect ratio */
-    position: relative;
-}
-
-.aspect-ratio-4-3 img {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
+  }
+  
+  .moment-card p {
+    text-align: center;
+  }
+  
+  .button-container {
+    display: flex;
+    justify-content: space-around;
+    padding: 10px;
+  }
+  
+  .button-container button {
+    padding: 5px 15px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .button-container button:hover {
+    background-color: #0056b3;
+  }
+  

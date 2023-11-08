@@ -7,9 +7,16 @@ const EditMomentComponent = () => {
   const { id } = useParams();
   const history = useHistory();
   const dispatch = useDispatch();
-  const moment = useSelector((state) =>
-    state.moments.find((m) => m.id === parseInt(id))
-  );
+ 
+  const moment = useSelector((state) => {
+    console.log('state.moments:', state.moments); 
+    if (Array.isArray(state.moments)) {
+      return state.moments.find((m) => m.id === parseInt(id));
+    } else {
+      console.error('state.moments is not an array:', state.moments);
+    }
+  });
+  
   const [formData, setFormData] = useState({
     name: '',
     notes: '',
@@ -50,8 +57,8 @@ const EditMomentComponent = () => {
     });
     history.push('/moments');
   };
+
   const handleCancel = () => {
-    // This will navigate back to the previous page, which should be the moments page.
     history.goBack();
   };
 
@@ -99,10 +106,11 @@ const EditMomentComponent = () => {
         <button type="submit">Save Changes</button>
         <button type="button" onClick={handleCancel}>Cancel</button>
 
+
       </form>
     </div>
   );
 };
 
 export default EditMomentComponent;
-EditMomentComponent.jsx
+

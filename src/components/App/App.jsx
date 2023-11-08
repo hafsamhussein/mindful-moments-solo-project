@@ -24,7 +24,6 @@ import MomentsPage from '../MomentsPage/MomentsPage';
 import AddNewMoment from '../AddNewMoment/AddNewMoment';
 import EditMomentComponent from '../EditMomentComponent/EditMomentComponent';
 
-
 import './App.css';
 
 function App() {
@@ -135,6 +134,7 @@ function App() {
   {/* <Route path="/EditMomentComponent" component={EditMomentComponent} /> */}
 
   <Route path="/EditMoment/:id" component={EditMomentComponent} />
+
 
 
 
