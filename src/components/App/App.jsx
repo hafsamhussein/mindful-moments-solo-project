@@ -135,6 +135,8 @@ function App() {
 
   <Route path="/EditMoment/:id" component={EditMomentComponent} />
 
+  <Route path="/" element={<MomentsPage />} />
+
 
 
 
